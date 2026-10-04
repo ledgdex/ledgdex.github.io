@@ -1,0 +1,26 @@
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='shortcut icon' type='image/x-icon' href='assets/favicon.ico'>
+<link rel='stylesheet' href='styles.css'>
+<title>JavaScript Core - Ledgdex Docs Dex</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'"><meta name="referrer" content="no-referrer"></head>
+<body>
+<br>
+<h1>JAVASCRIPT CORE</h1>
+<br>
+<p>The JavaScript core is ledgdex in plain JavaScript: the same rules as the Python package, in ES modules in <a href='https://github.com/ledgdex/ledgdex/tree/main/js'><code>js/</code></a> with no dependencies, no npm and no build step. It makes the same bytes, ids, signatures, states and pages as Python: both are checked against shared test vectors and against each other with differential fuzzing on every push. The <a href='https://ledgdex.github.io/viewer.html'>viewer</a> is built on it.</p><p>Where it runs: any current web browser, and Node 20 or later (the tests use Node 22). Other JavaScript runtimes are not tested.</p><p>What is in it:</p><p><pre><code>core.js      keys, messages, entries, Ledger (verify a ledger, add entries), newLedger
+state.js     state(ledger): offers, claims, auctions, disputes, admissions, ...
+canon.js     canonical JSON and hashes: canon, canonString, hash, parse
+render.js    the pages a ledgdex shows, and helpers such as amount and esc
+sig.js       signer(secret): Web Crypto Ed25519 when there is one, else the built-in code
+keystore.js  sealKey and openKey: a key sealed with a passphrase
+ed25519.js   sha.js   dexweb.js   zip.js   the parts underneath</code></pre></p><p>Every function, with its arguments, is in the <a href='apireference.html'>API Reference</a>.</p><p>Load it in a web page from the ledgdex site, as a module:</p><p><pre><code>&lt;script type='module'&gt;
+  import { Ledger } from 'https://ledgdex.github.io/core.js';
+  import { state } from 'https://ledgdex.github.io/state.js';
+&lt;/script&gt;</code></pre></p><p>That always gives the latest published core. For a site of your own, copy <code>js/</code> from a release (for example the <code>v1.0.17</code> tag) onto your site and load it from there: a script loaded from another site can change without you knowing, and it runs with your page's rights. In Node, import the files from a copy of <code>js/</code>, as the examples below do.</p><p>What it is good for:</p><p>1. Checking ledgers in the reader's own browser, so nobody has to trust your server. <a href='exampleshopwebpage.html'>Example: Shop Web Page</a> shows a shop's offers on its own website, read from its ledger.</p><p>2. Buying with nothing to install: a buyer keeps a key sealed in the browser, signs orders and keeps a ledger of its own, as the viewer does. <a href='examplesigninthebrowser.html'>Example: Sign in the Browser</a>.</p><p>3. Programs and bots written in JavaScript: read, check and follow ledgers from Node. <a href='exampleverifyinnode.html'>Example: Verify in Node</a>.</p><p>4. Making ledgers and messages in code, the same way the Python library does. <a href='examplejavascript.html'>Example: JavaScript</a>.</p><p>When to use Python instead: for the command line and everything it does over time. Publishing a dex with dexweb, <code>ledgdex check</code> with its kept copies and receipts, collecting messages from many dexes with <code>record --from</code>, keys kept on disk, and the daily check workflow are in Python only. The JavaScript core has no command line and does not publish.</p><p>Reading ledgers from other sites: a page can always read files from its own site. To read another site's <code>ledgdex.jsonl</code>, that site must allow it (CORS). GitHub Pages does, for every site it serves. If a host does not, download the file and open it, as the viewer lets you.</p><p>Keys in a browser: never store a secret key as it is. <code>sealKey(secret, passphrase, publicKey)</code> returns a sealed box you can store (PBKDF2-SHA-256 with 600,000 rounds, then AES-256-GCM; the passphrase has at least 12 characters), and <code>openKey(box, passphrase)</code> opens it. Every page on one site can read what that site stores, so keep keys on a site that serves nothing else you do not control. <code>signer(secret)</code> signs with the browser's own constant-time Ed25519 (Web Crypto) when it has one; verifying always uses the built-in code, so every browser judges a ledger the same way.</p><p>Things to keep in mind: everything in a ledger is data from someone else. Put its text on a page with <code>textContent</code>, or through <code>esc</code> from <code>render.js</code>, never as raw HTML; and check <code>whole</code> before you trust anything in a ledger.</p>
+<br><br><br><br><br><br><br>
+<h3><a href='index.html'>BACK TO LEDGDEX DOCS</a></h3>
+</body>
+</html>
