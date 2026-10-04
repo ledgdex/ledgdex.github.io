@@ -10,7 +10,7 @@
 <br>
 <h1>A TRADE, STEP BY STEP</h1>
 <br>
-<p>Who signs what, in which ledger, and the claim's status after each step. <a href='examplefirsttrade.html'>Example: First Trade</a> runs it.</p><p><pre><code>step                         signed by   kept in                     claim status
+<p>This table shows who signs each message, which ledgers keep it, and the status of the claim after each step. <a href='examplefirsttrade.html'>Example: First Trade</a> runs these steps.</p><p><pre><code>step                         signed by   kept in                     claim status
 offer                        seller      seller ledger               (offer open)
 claim                        buyer       buyer (sent), seller        accepted, or rejected with a reason
 receipt of the claim         buyer       buyer ledger                (the third entry)
@@ -19,7 +19,7 @@ received                     seller      seller ledger               accepted, r
 delivered                    seller      seller ledger               accepted, delivered
 confirmed                    buyer       buyer (sent), seller        closed (once received + delivered + confirmed)
 dispute                      either      seller ledger               disputed
-ruling                       arbiter     seller ledger               released, refunded or split</code></pre></p><p>Rejection reasons, in the order they are tested: <code>unknown_offer</code>, <code>offer_changed</code>, <code>withdrawn</code>, <code>expired</code>, <code>self_claim</code>, <code>not_allowed</code>, <code>bad_quantity</code>, <code>price_mismatch</code>. Messages that break no structure but no rule accepts (a payment from someone else, a ruling by the wrong key, a message recorded twice) are kept and listed in the state's <code>ignored</code> with a reason; they never break the ledger.</p><p>Read the state of any ledger: <pre><code>ledgdex state https://farm.example
+ruling                       arbiter     seller ledger               released, refunded or split</code></pre></p><p>The state tests the rejection reasons in this order: <code>unknown_offer</code>, <code>offer_changed</code>, <code>withdrawn</code>, <code>expired</code>, <code>self_claim</code>, <code>not_allowed</code>, <code>bad_quantity</code>, <code>price_mismatch</code>.</p><p>Some messages break no structure rule, but no state rule accepts them. Examples are a payment from a different key, a ruling by the wrong key, and a message that the seller records two times.</p><p>The ledger keeps these messages. The state lists them in <code>ignored</code>, with a reason. They never break the ledger.</p><p>To read the state of a ledger: <pre><code>ledgdex state https://farm.example
 ledgdex state shop | python3 -m json.tool</code></pre></p>
 <br><br><br><br><br><br><br>
 <h3><a href='index.html'>BACK TO LEDGDEX DOCS</a></h3>

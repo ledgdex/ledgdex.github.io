@@ -10,21 +10,21 @@
 <br>
 <h1>LEDGDEX DIRECTORY STRUCTURE</h1>
 <br>
-<p>What <code>ledgdex init shop ...</code> makes. Everything in the folder is public except nothing: keys are never in a dex.</p><p><pre><code>shop/
-  ledgdex.jsonl        the ledger: a header line and one signed entry per line (append-only)
-  data.json            the dex pages: yours, and the ones ledgdex writes (they start with &lt;!-- ledgdex --&gt;)
+<p>This list shows the files that <code>ledgdex init shop ...</code> makes. Nothing in the folder is secret. Keys are never in a dex.</p><p><pre><code>shop/
+  ledgdex.jsonl        the ledger: a header line and one signed entry for each line (it only grows)
+  data.json            the dex pages: your pages, and the pages that ledgdex writes (they start with &lt;!-- ledgdex --&gt;)
   config.json          dexweb settings, "publish" (with "append_only": ["ledgdex.jsonl"]) and "ledgdex"
-  styles.css           the look (dexweb's default)
+  styles.css           the look of the site (the dexweb default)
   run.py               "python run.py" builds the dex with dexweb, as in any dex
-  to_add/              files to add as pages (dexweb)
-  backup/              dexweb's backup of data.json
-  gen/                 the website: what is published, including gen/ledgdex.jsonl
-  .ledgdex-root.jsonl  the last copy of the root read (only with a root; never published)
-  .ledgdex.lock        one writer at a time
-  .publish/            dexweb's copy of the repository it publishes to
+  to_add/              files that dexweb adds as pages
+  backup/              the dexweb backup of data.json
+  gen/                 the website: the published files, with gen/ledgdex.jsonl
+  .ledgdex-root.jsonl  the last copy of the root that ledgdex read (only with a root, never published)
+  .ledgdex.lock        lets one writer change the dex at a time
+  .publish/            the dexweb copy of the repository that it publishes to
 
 ~/.ledgdex/            secret keys, mode 600 (NAME.key), and secret bids until their reveal (bids/)
-~/.cache/ledgdex/      which ledger bytes were already verified (a speed-up only)</code></pre></p><p>Only <code>gen/</code> is published. <code>ledgdex render shop</code> rewrites the generated pages and rebuilds <code>gen/</code>; every command that records does it for you.</p>
+~/.cache/ledgdex/      a record of the ledger bytes that ledgdex verified before (for speed only)</code></pre></p><p>Ledgdex publishes only <code>gen/</code>. The command <code>ledgdex render shop</code> writes the generated pages again and builds <code>gen/</code> again. Each command that records an entry does this for you.</p>
 <br><br><br><br><br><br><br>
 <h3><a href='index.html'>BACK TO LEDGDEX DOCS</a></h3>
 </body>

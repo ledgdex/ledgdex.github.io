@@ -10,11 +10,11 @@
 <br>
 <h1>INSTALLATION</h1>
 <br>
-<p>Ledgdex needs Python 3.8 or later and dexweb (installed with it). Publishing needs git.</p><p>1. From the release (recommended): <pre><code>pip install "ledgdex @ git+https://github.com/ledgdex/ledgdex@v1.0.17#subdirectory=py"</code></pre></p><p>2. With fast, constant-time signing (recommended on every machine that signs; ledgdex warns without it): <pre><code>pip install "ledgdex[fast] @ git+https://github.com/ledgdex/ledgdex@v1.0.17#subdirectory=py"</code></pre></p><p>3. From a clone, to develop: <pre><code>git clone https://github.com/ledgdex/ledgdex
+<p>Ledgdex needs Python 3.8 or later, and dexweb. Pip installs dexweb with ledgdex. To publish, you also need git.</p><p>1. Install from the release. This is the recommended way: <pre><code>pip install "ledgdex @ git+https://github.com/ledgdex/ledgdex@v1.0.17#subdirectory=py"</code></pre></p><p>2. Install with fast, constant-time signing. Use this way on each computer that signs. Without it, ledgdex shows a warning: <pre><code>pip install "ledgdex[fast] @ git+https://github.com/ledgdex/ledgdex@v1.0.17#subdirectory=py"</code></pre></p><p>3. Install from a clone, to work on ledgdex itself: <pre><code>git clone https://github.com/ledgdex/ledgdex
 cd ledgdex
 pip install -e "py[fast]"
-cd py &amp;&amp; python -m unittest discover -s tests</code></pre></p><p>4. Check: <pre><code>ledgdex --help
-ledgdex verify https://ledgdex.github.io/docs</code></pre></p><p>The JavaScript core needs no install (<a href='javascriptcore.html'>JavaScript Core</a>): it is plain ES modules in <code>js/</code>, also served next to the <a href='https://ledgdex.github.io/viewer.html'>viewer</a> (<a href='apireference.html'>API Reference</a>).</p><p>Where things live: keys in <code>~/.ledgdex</code> (or <code>$LEDGDEX_HOME</code>), the verification cache in <code>~/.cache/ledgdex</code> (or <code>$LEDGDEX_CACHE</code>); see <a href='configuration.html'>Configuration</a>.</p>
+cd py &amp;&amp; python -m unittest discover -s tests</code></pre></p><p>4. Make sure that ledgdex works: <pre><code>ledgdex --help
+ledgdex verify https://ledgdex.github.io/docs</code></pre></p><p>You do not install the JavaScript core. It is plain ES modules in <code>js/</code>. The site also serves these modules next to the <a href='https://ledgdex.github.io/viewer.html'>viewer</a>. See <a href='javascriptcore.html'>JavaScript Core</a> and the <a href='apireference.html'>API Reference</a>.</p><p>Ledgdex keeps keys in <code>~/.ledgdex</code>, or in <code>$LEDGDEX_HOME</code> when you set it. It keeps the verification cache in <code>~/.cache/ledgdex</code>, or in <code>$LEDGDEX_CACHE</code>. See <a href='configuration.html'>Configuration</a>.</p>
 <br><br><br><br><br><br><br>
 <h3><a href='index.html'>BACK TO LEDGDEX DOCS</a></h3>
 </body>
