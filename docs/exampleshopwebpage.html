@@ -20,9 +20,9 @@
 &lt;h1&gt;Today's offers&lt;/h1&gt;
 &lt;p id='status'&gt;Checking the shop's ledger...&lt;/p&gt;
 &lt;ul id='offers'&gt;&lt;/ul&gt;
-&lt;script type='module'&gt;</code></pre></p><p>Load the JavaScript core from the ledgdex site. For a real shop, copy <code>js/</code> from a release onto your own site and load it from there.</p><p><pre><code>import { Ledger } from 'https://ledgdex.github.io/core.js';
-import { state } from 'https://ledgdex.github.io/state.js';
-import { amount } from 'https://ledgdex.github.io/render.js';</code></pre></p><p>Read the shop's ledger. This one is the ledger of these docs: put your shop's address here. The site that serves it must let other sites read it; GitHub Pages does.</p><p><pre><code>const SHOP = 'https://ledgdex.github.io/docs/ledgdex.jsonl';
+&lt;script type='module'&gt;</code></pre></p><p>Load the JavaScript core from the ledgdex site. For a real shop, copy <code>js/</code> from a release onto your own site and load it from there.</p><p><pre><code>import { Ledger } from 'https://ledgdex.github.io/viewer/core.js';
+import { state } from 'https://ledgdex.github.io/viewer/state.js';
+import { amount } from 'https://ledgdex.github.io/viewer/render.js';</code></pre></p><p>Read the shop's ledger. This one is the ledger of these docs: put your shop's address here. The site that serves it must let other sites read it; GitHub Pages does.</p><p><pre><code>const SHOP = 'https://ledgdex.github.io/docs/ledgdex.jsonl';
 const res = await fetch(SHOP);
 const led = new Ledger(new Uint8Array(await res.arrayBuffer()));</code></pre></p><p>Check every hash and signature in the reader's own browser, then list the open offers. Text from a ledger goes in with <code>textContent</code>, never as HTML, so nothing written in a ledger can run on your page.</p><p><pre><code>const status = document.getElementById('status');
 if (!led.whole) {

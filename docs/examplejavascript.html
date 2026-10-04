@@ -26,7 +26,7 @@ console.log('whole', read.whole, 'entries', read.entries.length);
 const st = state(read);
 console.log(Object.values(st.claims).map((c) =&gt; c.status).join(', '));
 console.log('same state as a fresh read:', canonString(st, ID_KEY) === canonString(state(new Ledger(led.data)), ID_KEY));</code></pre></p><p>The whole file: <a href='https://github.com/ledgdex/ledgdex/blob/main/guide/examples/12-javascript.mjs'><code>guide/examples/12-javascript.mjs</code></a>, run as it is on every push (<code>py/tests/test_guide.py</code>).</p><p>In a web page, load the same core as a module and read any published ledger:</p><p><pre><code>&lt;script type='module'&gt;
-  import { Ledger } from 'https://ledgdex.github.io/core.js';
+  import { Ledger } from 'https://ledgdex.github.io/viewer/core.js';
   const res = await fetch('https://farm.example/ledgdex.jsonl');
   const led = new Ledger(new Uint8Array(await res.arrayBuffer()));
   console.log(led.whole, led.entries.length, led.error);
