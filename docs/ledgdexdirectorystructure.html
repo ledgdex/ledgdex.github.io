@@ -21,7 +21,7 @@
   gen/                 the website: the published files, with gen/ledgdex.jsonl
   .ledgdex-root.jsonl  the last copy of the root that ledgdex read (only with a root, never published)
   .ledgdex.lock        lets one writer change the dex at a time
-  .publish/            the dexweb copy of the repository that it publishes to
+  .publish/            the dexweb copy of the repository that it publishes to (only with the git method)
 
 ~/.ledgdex/            secret keys, mode 600 (NAME.key), and secret bids until their reveal (bids/)
 ~/.cache/ledgdex/      a record of the ledger bytes that ledgdex verified before (for speed only)</code></pre></p><p>Ledgdex publishes only <code>gen/</code>. The command <code>ledgdex render shop</code> writes the generated pages again and builds <code>gen/</code> again. Each command that records an entry does this for you.</p>

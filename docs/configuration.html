@@ -15,7 +15,7 @@
   "publish": {"dest": "git@github.com:YOU/YOU.github.io.git", "branch": "main",
               "append_only": ["ledgdex.jsonl"]},
   "ledgdex": {"root": "https://market.example", "root_id": "sha256:..."}
-}</code></pre></p><p>- <code>publish</code>: where dexweb publishes (<a href='https://matrixdex.github.io/dexweb/publishingdexonline.html'>dexweb docs</a>). Its <code>append_only</code> list must include <code>ledgdex.jsonl</code>.</p><p>- <code>ledgdex</code>: the root that this dex trades under, pinned by its id.</p><p>Environment variables:</p><p><pre><code>LEDGDEX_HOME       where keys live (default ~/.ledgdex)
+}</code></pre></p><p>- <code>publish</code>: where dexweb publishes (<a href='https://matrixdex.github.io/dexweb/publishingdexonline.html'>dexweb docs</a>). Its <code>append_only</code> list must include <code>ledgdex.jsonl</code>. The git method is the default. It uses <code>dest</code>, <code>branch</code> and <code>site_path</code>. The folder method uses <code>"method": "folder"</code> and <code>path</code>, and needs no git (<a href='publishingaledgdexonline.html'>Publishing a Ledgdex Online</a>).</p><p>- <code>ledgdex</code>: the root that this dex trades under, pinned by its id.</p><p>Environment variables:</p><p><pre><code>LEDGDEX_HOME       where keys live (default ~/.ledgdex)
 LEDGDEX_CACHE      the verification cache (default ~/.cache/ledgdex)
 LEDGDEX_NO_CACHE   1: verify every entry every time
 LEDGDEX_PURE       1: sign and verify with the built-in Ed25519 (not constant time)
