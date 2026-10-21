@@ -14,7 +14,7 @@
 ledgdex device add shop "$PUB" --name "shop phone"   # with the owner key
 ledgdex device revoke shop "$PUB" --reason lost</code></pre></p><p>A revoked device cannot sign more entries. The entries that it signed before stay valid.</p><p>Give device keys only to devices that you trust with the ledger. A revoke cannot undo what a stolen device could sign while it was active.</p><p>To replace the owner key, rotate it. The old key signs the rotation: <code>ledgdex rotate shop --key farm-2027</code>.</p><p>If the owner loses the owner key, use recovery:</p><p>1. The root operator checks who the owner is.</p><p>2. The root names a new key for the ledger.</p><p>3. The owner gets the ledger again with the new key.</p><p>A recovery removes all device keys. <pre><code>NEW=$(ledgdex keygen farm-new)                         # owner, on a new machine
 ledgdex recover root https://farm.example "$NEW"      # root operator, with the root's owner key
-ledgdex recovered shop --root https://market.example --key farm-new</code></pre></p><p>Keep a backup of each owner key offline. <a href='examplekeys.html'>Example: Keys</a> runs all of these steps.</p>
+ledgdex recovered shop --root https://market.example --key farm-new</code></pre></p><p>Keep a backup of each owner key offline. <a href='examples.html#examplekeys'>Example: Keys</a> runs all of these steps.</p>
 <br><br><br><br><br><br><br>
 <h3><a href='index.html'>BACK TO LEDGDEX DOCS</a></h3>
 </body>
